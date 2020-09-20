@@ -10,7 +10,6 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.util.Log
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import com.promosapp.stocknews.models.articleListModel
 import com.promosapp.stocknews.models.article_listitem
 
@@ -59,7 +58,6 @@ Output: None
         fun msgLong(msg:String, curContext: Context) {
             msgDo(msg, curContext, Toast.LENGTH_LONG)
         }
-
 
 /**
 Scan through the article list array, pick out the needed data

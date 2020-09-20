@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.promosapp.stocknews.adapters.apiInterface
 import com.promosapp.stocknews.adapters.articleListRecyclerAdapter
-import com.promosapp.stocknews.adapters.list_itemReyclerAdapter
 import com.promosapp.stocknews.classes.constants
 import com.promosapp.stocknews.classes.util
 import com.promosapp.stocknews.models.articleListModel
@@ -18,7 +17,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var articleAdapter: list_itemReyclerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -58,11 +56,16 @@ class MainActivity : AppCompatActivity() {
     private fun updateRecyclerView(data: List<article_listitem>) {
         util.vibrate(50, baseContext)
 
+
+//        val animation = AnimationUtils.loadLayoutAnimation(baseContext, R.anim.anim_fall)
+//        recyclerView.layoutAnimation(animation)
+
+//        recyclerView.scheduleLayoutAnimation()
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
-            articleAdapter = list_itemReyclerAdapter()
             adapter = articleListRecyclerAdapter(data)
         }
+
     }
 
 //    Lets not allow to go back to the launch screen

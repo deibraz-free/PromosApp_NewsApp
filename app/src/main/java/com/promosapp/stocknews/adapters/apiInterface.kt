@@ -1,6 +1,5 @@
 package com.promosapp.stocknews.adapters
 
-import com.google.gson.JsonObject
 import com.promosapp.stocknews.models.articleListModel
 import retrofit2.Call
 import retrofit2.http.GET

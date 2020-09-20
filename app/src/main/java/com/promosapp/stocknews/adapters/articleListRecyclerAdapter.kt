@@ -12,6 +12,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.promosapp.stocknews.LauncherActivity
 import com.promosapp.stocknews.R
+import com.promosapp.stocknews.classes.util
 import com.promosapp.stocknews.models.article_listitem
 import kotlinx.android.synthetic.main.layout_list_item.view.*
 
@@ -23,7 +24,11 @@ class articleListRecyclerAdapter(private val data: List<article_listitem>): Recy
 
         init {
             item.setOnClickListener {
-                println("test" + position)
+                util.vibrate(50, item.context)
+
+
+//                articleListRecyclerAdapterscheduleLayoutAnimation()
+
                 val intent = Intent(item.context, LauncherActivity::class.java)
                 item.context.startActivity(intent)
             }
@@ -51,6 +56,5 @@ class articleListRecyclerAdapter(private val data: List<article_listitem>): Recy
             .load(data[position].image)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(holder.article_image)
-
     }
 }

@@ -1,10 +1,10 @@
 package com.promosapp.stocknews
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.promosapp.stocknews.adapters.RecyclerNew
 import com.promosapp.stocknews.adapters.apiInterface
+import com.promosapp.stocknews.adapters.articleListRecyclerAdapter
 import com.promosapp.stocknews.adapters.list_itemReyclerAdapter
 import com.promosapp.stocknews.classes.constants
 import com.promosapp.stocknews.classes.util
@@ -26,11 +26,9 @@ class MainActivity : AppCompatActivity() {
         refreshData()
 
         swipeRefreshLayout.setOnRefreshListener {
-            util.msg("Refreshing", baseContext)
             refreshData()
             swipeRefreshLayout.isRefreshing = false
         }
-
     }
 
     private fun refreshData() {
@@ -63,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             articleAdapter = list_itemReyclerAdapter()
-            adapter = RecyclerNew(data)
+            adapter = articleListRecyclerAdapter(data)
         }
     }
 
@@ -73,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         System.exit(0)
     }
 
-    //    Override the animations
+//    Override the animations
     override fun onResume() {
         super.onResume()
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)

@@ -11,14 +11,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.promosapp.stocknews.LauncherActivity
-import com.promosapp.stocknews.MainActivity
 import com.promosapp.stocknews.R
-import com.promosapp.stocknews.classes.util
-import com.promosapp.stocknews.models.article
 import com.promosapp.stocknews.models.article_listitem
 import kotlinx.android.synthetic.main.layout_list_item.view.*
 
-class RecyclerNew(private val data: List<article_listitem>): RecyclerView.Adapter<RecyclerNew.ViewHolder>() {
+class articleListRecyclerAdapter(private val data: List<article_listitem>): RecyclerView.Adapter<articleListRecyclerAdapter.ViewHolder>() {
     class ViewHolder(item: View):RecyclerView.ViewHolder(item) {
         val article_image: ImageView = item.article_image
         val article_title: TextView = item.article_title

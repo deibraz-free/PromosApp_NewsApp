@@ -1,22 +1,26 @@
+/*
+ * Copyright (c) 2020. Deividas Brazauskas
+ */
+
 package com.promosapp.stocknews
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.promosapp.stocknews.classes.util
 import kotlinx.android.synthetic.main.activity_launcher.*
 
 /**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
+ * The first actvity - splash screen launcher.
+ * It auto deactivates after some time. Can also be deactivated by tapping the screen.
  */
+
 class LauncherActivity : AppCompatActivity() {
     private lateinit var mHandler: Handler
     private lateinit var mRunnable: Runnable
-
-
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +55,8 @@ class LauncherActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
+        logo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in))
+
         button_bg.setOnClickListener {
             mHandler.removeCallbacks(mRunnable)
 

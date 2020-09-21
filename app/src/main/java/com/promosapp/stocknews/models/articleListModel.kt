@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020. Deividas Brazauskas
+ */
+
 package com.promosapp.stocknews.models
 
 import com.google.gson.annotations.SerializedName

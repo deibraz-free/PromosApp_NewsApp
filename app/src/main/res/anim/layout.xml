@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. Deividas Brazauskas
+  -->
+
 <!-- important: tweak the delay percentage to slow down or speed up animation -->
 <layoutAnimation
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:animation="@anim/newanim"
+    android:animation="@anim/fade_in_slide"
     android:animationOrder="normal"
     android:delay="50%" />

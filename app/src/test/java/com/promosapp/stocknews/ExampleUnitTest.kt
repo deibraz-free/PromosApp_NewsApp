@@ -1,8 +1,11 @@
+/*
+ * Copyright (c) 2020. Deividas Brazauskas
+ */
+
 package com.promosapp.stocknews
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).

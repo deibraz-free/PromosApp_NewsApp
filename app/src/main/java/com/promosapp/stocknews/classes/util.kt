@@ -1,6 +1,6 @@
-/**
-This class provides various utility functions
-**/
+/*
+ * Copyright (c) 2020. Deividas Brazauskas
+ */
 
 package com.promosapp.stocknews.classes
 
@@ -10,8 +10,14 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.util.Log
 import android.widget.Toast
+import com.bumptech.glide.request.RequestOptions
+import com.promosapp.stocknews.R
+import com.promosapp.stocknews.models.article
 import com.promosapp.stocknews.models.articleListModel
-import com.promosapp.stocknews.models.article_listitem
+
+/**
+ * This class provides various utility functions
+ */
 
 class util {
     companion object {
@@ -64,23 +70,32 @@ Scan through the article list array, pick out the needed data
 Input: articleListModel class
 Output: ArrayList of artcile_listitems
 **/
-        fun convertToData(data: articleListModel): ArrayList<article_listitem> {
-            val list = ArrayList<article_listitem>()
+        fun convertToData(data: articleListModel): ArrayList<article> {
+            val list = ArrayList<article>()
 
 //            Lets first check if its not null, just in case
             for (item in data.articles) {
-                print(item)
                 list.add(
-                    article_listitem(
+                    article(
                         item.title,
-                        item.urlToImage,
+                        item.author,
                         item.description,
-                        item.publishedAt
+                        item.url,
+                        item.urlToImage,
+                        item.publishedAt,
+                        item.content
                     )
                 )
             }
 
             return list
+        }
+
+        fun  getGlideDefaultOptions():RequestOptions {
+            val ret = RequestOptions()
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)
+            return ret
         }
     }
 }

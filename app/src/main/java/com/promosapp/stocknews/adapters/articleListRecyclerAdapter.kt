@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020. Deividas Brazauskas
+ */
+
 package com.promosapp.stocknews.adapters
 
 import android.view.LayoutInflater
@@ -6,15 +10,19 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.GenericTransitionOptions
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions
 import com.promosapp.stocknews.MainActivity
 import com.promosapp.stocknews.R
-import com.promosapp.stocknews.models.article_listitem
+import com.promosapp.stocknews.classes.util
+import com.promosapp.stocknews.models.article
 import kotlinx.android.synthetic.main.layout_list_item.view.*
 
-class articleListRecyclerAdapter(private val data: List<article_listitem>): RecyclerView.Adapter<articleListRecyclerAdapter.ViewHolder>() {
+/**
+ * A recycler adapter for handling the main URL list
+ */
+
+class articleListRecyclerAdapter(private val data: List<article>): RecyclerView.Adapter<articleListRecyclerAdapter.ViewHolder>() {
     class ViewHolder(item: View):RecyclerView.ViewHolder(item) {
 
 //        Lets init UI elements
@@ -32,27 +40,23 @@ class articleListRecyclerAdapter(private val data: List<article_listitem>): Recy
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 //        Lets store this for future reference
-        val artcicleCur = data[position]
+        val articleCur = data[position]
 
 //        Check when the item has been clicked, when it has, pass the clicked article item
         holder.itemView.setOnClickListener {
-            (holder.itemView.context as MainActivity).onItemClicked(artcicleCur)
+            (holder.itemView.context as MainActivity).onItemClicked(articleCur)
         }
 
 //        Set the title, date time
-        holder.article_title.text = artcicleCur.title
-        holder.article_datetime.text = artcicleCur.datetime
+        holder.article_title.text = articleCur.title
+        holder.article_datetime.text = articleCur.datetime
 
-//      Handle image setting using Glide
-        val requestOptions = RequestOptions()
-            .placeholder(R.drawable.ic_launcher_background)
-            .error(R.drawable.ic_launcher_background)
-
+//      Handle image loading with glide library
         Glide
             .with(holder.itemView)
-            .applyDefaultRequestOptions(requestOptions)
-            .load(artcicleCur.image)
-            .transition(DrawableTransitionOptions.withCrossFade())
+            .applyDefaultRequestOptions(util.getGlideDefaultOptions())
+            .load(articleCur.image)
+            .transition(GenericTransitionOptions.with(R.anim.fade_in))
             .into(holder.article_image)
     }
 }

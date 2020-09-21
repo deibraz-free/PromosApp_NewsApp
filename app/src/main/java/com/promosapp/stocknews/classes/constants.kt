@@ -1,10 +1,13 @@
-//
-// This class provides various constants, such as API keys, URLs
-//
+/*
+ * Copyright (c) 2020. Deividas Brazauskas
+ */
 
 package com.promosapp.stocknews.classes
 
-// Contains various constants that we might need to use
+/**
+ * Provides various constants
+ */
+
 class constants {
     companion object {
         //  News articles API key

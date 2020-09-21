@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020. Deividas Brazauskas
+ */
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -34,8 +38,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
 
     // Card View
     implementation "androidx.cardview:cardview:1.0.0"

@@ -1,6 +1,9 @@
 package com.promosapp.stocknews
 
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.promosapp.stocknews.adapters.apiInterface
@@ -24,9 +27,17 @@ class MainActivity : AppCompatActivity() {
         refreshData()
 
         swipeRefreshLayout.setOnRefreshListener {
+            showProgress()
             refreshData()
             swipeRefreshLayout.isRefreshing = false
         }
+
+        initUI()
+    }
+
+    private fun initUI() {
+        val fragment = FullscreenFragment.newInstance()
+        showProgress()
     }
 
     private fun refreshData() {
@@ -41,6 +52,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<articleListModel>, t: Throwable) {
                 util.msg("FAILED", baseContext)
+                hideProgress()
             }
 
             override fun onResponse(call: Call<articleListModel>, response: Response<articleListModel>) {
@@ -49,14 +61,42 @@ class MainActivity : AppCompatActivity() {
                     var list: List<article_listitem> = util.convertToData(data)
                     updateRecyclerView(list)
                 }
+                hideProgress()
             }
         })
+    }
+
+//    Show, hide progress bar
+    fun changeProgress(vis:Int) {
+        progress_Bar.visibility = vis
+        //loading our custom made animations
+        val animation = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+        //starting the animation
+    }
+    fun hideProgress() {
+        val animation = AnimationUtils.loadAnimation(this, R.anim.fade_out)
+        progress_Bar.startAnimation(animation)
+
+        Handler().postDelayed({
+            progress_Bar.visibility = View.GONE
+        }, 250)
+    }
+    fun showProgress() {
+        progress_Bar.visibility = View.VISIBLE
+
+//        //loading our custom made animations
+//        val animation = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+//        //starting the animation
+//        progress_Bar.startAnimation(animation)
     }
 
 //    Ran when an item has been clicked, source is articleListRecyclerAdapter
     fun onItemClicked(data:article_listitem) {
 
-    supportFragmentManager.beginTransaction()
+        val transaction = supportFragmentManager.beginTransaction()
+
+    hideProgress()
+//        transaction.replace(R.id.fragmentContainer, fragment)
 //        util.msg(data.title, baseContext)
     }
 

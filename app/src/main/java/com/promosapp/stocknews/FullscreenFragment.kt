@@ -1,7 +1,6 @@
 package com.promosapp.stocknews
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +12,6 @@ import androidx.fragment.app.Fragment
  * status bar and navigation/system bar) with user interaction.
  */
 class FullscreenFragment : Fragment() {
-    private val hideHandler = Handler()
-
-    @Suppress("InlinedApi")
-    private val hidePart2Runnable = Runnable {
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,10 +19,6 @@ class FullscreenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_fullscreen, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onResume() {
@@ -43,6 +32,9 @@ class FullscreenFragment : Fragment() {
         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
 
+    companion object {
+        fun newInstance() = FullscreenFragment()
+    }
     override fun onDestroy() {
         super.onDestroy()
     }

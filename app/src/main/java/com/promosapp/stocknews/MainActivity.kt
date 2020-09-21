@@ -53,6 +53,13 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+//    Ran when an item has been clicked, source is articleListRecyclerAdapter
+    fun onItemClicked(data:article_listitem) {
+
+    supportFragmentManager.beginTransaction()
+//        util.msg(data.title, baseContext)
+    }
+
     private fun updateRecyclerView(data: List<article_listitem>) {
         util.vibrate(50, baseContext)
 

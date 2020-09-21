@@ -1,6 +1,5 @@
 package com.promosapp.stocknews.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,29 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import com.promosapp.stocknews.LauncherActivity
+import com.promosapp.stocknews.MainActivity
 import com.promosapp.stocknews.R
-import com.promosapp.stocknews.classes.util
 import com.promosapp.stocknews.models.article_listitem
 import kotlinx.android.synthetic.main.layout_list_item.view.*
 
 class articleListRecyclerAdapter(private val data: List<article_listitem>): RecyclerView.Adapter<articleListRecyclerAdapter.ViewHolder>() {
     class ViewHolder(item: View):RecyclerView.ViewHolder(item) {
+
+//        Lets init UI elements
         val article_image: ImageView = item.article_image
         val article_title: TextView = item.article_title
         val article_datetime: TextView = item.article_datetime
-
-        init {
-            item.setOnClickListener {
-                util.vibrate(50, item.context)
-
-
-//                articleListRecyclerAdapterscheduleLayoutAnimation()
-
-                val intent = Intent(item.context, LauncherActivity::class.java)
-                item.context.startActivity(intent)
-            }
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -43,9 +31,19 @@ class articleListRecyclerAdapter(private val data: List<article_listitem>): Recy
     override fun getItemCount() = data.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.article_title.text = data[position].title
-        holder.article_datetime.text = data[position].datetime
+//        Lets store this for future reference
+        val artcicleCur = data[position]
 
+//        Check when the item has been clicked, when it has, pass the clicked article item
+        holder.itemView.setOnClickListener {
+            (holder.itemView.context as MainActivity).onItemClicked(artcicleCur)
+        }
+
+//        Set the title, date time
+        holder.article_title.text = artcicleCur.title
+        holder.article_datetime.text = artcicleCur.datetime
+
+//      Handle image setting using Glide
         val requestOptions = RequestOptions()
             .placeholder(R.drawable.ic_launcher_background)
             .error(R.drawable.ic_launcher_background)
@@ -53,7 +51,7 @@ class articleListRecyclerAdapter(private val data: List<article_listitem>): Recy
         Glide
             .with(holder.itemView)
             .applyDefaultRequestOptions(requestOptions)
-            .load(data[position].image)
+            .load(artcicleCur.image)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(holder.article_image)
     }

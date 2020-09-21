@@ -10,7 +10,7 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:background="#00FFFFFF"
-    tools:context=".articleDetailedFragment"
+    tools:context=".model.ArticleDetailedFragment"
     android:focusable="true">
 
     <ImageView
@@ -52,13 +52,16 @@
                 android:id="@+id/frag_article_author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="textEnd" />
+                android:textAlignment="textEnd"
+                android:textSize="12sp"
+                android:layout_marginTop="8dp"/>
 
             <TextView
                 android:id="@+id/frag_article_datetime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="textEnd" />
+                android:textAlignment="textEnd"
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/frag_button_readmore"

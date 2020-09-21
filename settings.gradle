@@ -3,4 +3,4 @@
  */
 
 include ':app'
-rootProject.name = "Stock news"
+rootProject.name = "Techcrunch top headlines"

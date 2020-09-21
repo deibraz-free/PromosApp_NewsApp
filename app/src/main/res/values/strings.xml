@@ -3,7 +3,7 @@
   -->
 
 <resources>
-    <string name="app_name">Stock news</string>
+    <string name="app_name">TechCrunch top headlines</string>
     <string name="title_activity_article">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
@@ -11,4 +11,5 @@
     <string name="app_logo">App logo</string>
     <string name="read_full_article_online">READ FULL ARTICLE ONLINE</string>
     <string name="article_image">Article image</string>
+    <string name="fetching_failed">Could not contact web-server</string>
 </resources>

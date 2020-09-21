@@ -2,7 +2,7 @@
  * Copyright (c) 2020. Deividas Brazauskas
  */
 
-package com.promosapp.stocknews.classes
+package com.promosapp.stocknews.utils
 
 import android.content.Context
 import android.os.Build
@@ -12,18 +12,18 @@ import android.util.Log
 import android.widget.Toast
 import com.bumptech.glide.request.RequestOptions
 import com.promosapp.stocknews.R
-import com.promosapp.stocknews.models.article
-import com.promosapp.stocknews.models.articleListModel
+import com.promosapp.stocknews.model.Article
+import com.promosapp.stocknews.model.ArticleListModel
 
 /**
  * This class provides various utility functions
  */
 
-class util {
+class Util {
     companion object {
         // get the URL of news articles
         fun getbaseURL(): String {
-//            return "http://newsapi.org/v2/everything?domains=wsj.com&apiKey="+constants.Companion.apiKey
+//            return "http://newsapi.org/v2/everything?domains=wsj.com&apiKey="+Constants.Companion.apiKey
             return "http://newsapi.org/"
         }
 
@@ -66,17 +66,17 @@ Output: None
         }
 
 /**
-Scan through the article list array, pick out the needed data
-Input: articleListModel class
+Scan through the Article list array, pick out the needed data
+Input: ArticleListModel class
 Output: ArrayList of artcile_listitems
 **/
-        fun convertToData(data: articleListModel): ArrayList<article> {
-            val list = ArrayList<article>()
+        fun convertToData(data: ArticleListModel): ArrayList<Article> {
+            val list = ArrayList<Article>()
 
 //            Lets first check if its not null, just in case
             for (item in data.articles) {
                 list.add(
-                    article(
+                    Article(
                         item.title,
                         item.author,
                         item.description,
@@ -91,7 +91,13 @@ Output: ArrayList of artcile_listitems
             return list
         }
 
-        fun  getGlideDefaultOptions():RequestOptions {
+/**
+Create default options for glide image loading
+Input: None
+Output: Glide library RequestOptions
+ **/
+
+        fun getGlideDefaultOptions():RequestOptions {
             val ret = RequestOptions()
                 .placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_background)

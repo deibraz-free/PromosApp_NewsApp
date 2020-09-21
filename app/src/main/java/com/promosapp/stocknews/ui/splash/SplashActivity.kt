@@ -2,7 +2,7 @@
  * Copyright (c) 2020. Deividas Brazauskas
  */
 
-package com.promosapp.stocknews
+package com.promosapp.stocknews.ui.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,7 +10,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
-import com.promosapp.stocknews.classes.util
+import com.promosapp.stocknews.R
+import com.promosapp.stocknews.ui.articles.ArticlesActivity
+import com.promosapp.stocknews.utils.Util
 import kotlinx.android.synthetic.main.activity_launcher.*
 
 /**
@@ -18,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_launcher.*
  * It auto deactivates after some time. Can also be deactivated by tapping the screen.
  */
 
-class LauncherActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
     private lateinit var mHandler: Handler
     private lateinit var mRunnable: Runnable
 
@@ -29,33 +31,38 @@ class LauncherActivity : AppCompatActivity() {
         setContentView(R.layout.activity_launcher)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+//        We don't need actionbar
         try {
             this.supportActionBar!!.hide()
         } catch (e: NullPointerException) {
         }
 
+//        Handle splash screen automated ending
         mRunnable = Runnable {
             endSplash()
         }
-
         mHandler = Handler()
-
         mHandler.postDelayed(mRunnable, 3000)
 
+//        Do inits
         initUI()
     }
 
+//    End splash screen, switch to ArticlesActivity
     private fun endSplash() {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, ArticlesActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent)
         finish()
 
-        util.vibrate(125, baseContext)
+        Util.vibrate(125, baseContext)
     }
 
+//    Initialize some UI elements
     private fun initUI() {
-        logo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in))
+        logo.startAnimation(AnimationUtils.loadAnimation(this,
+            R.anim.fade_in
+        ))
 
         button_bg.setOnClickListener {
             mHandler.removeCallbacks(mRunnable)

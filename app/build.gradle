@@ -55,4 +55,16 @@ dependencies {
     // retrofit2 /app/build.gradle dependencies
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+
+//    implementation "com.gooogle.dagger:dagger:2.10"
+//    implementation "com.gooogle.dagger:dagger-android:2.10"
+//    implementation "com.gooogle.dagger:dagger-android-support:2.10"
+//    implementation "com.google.dagger:dagger-compiler:2.10"
+//    implementation "com.google.dagger:dagger-android-processor:2.10"
+//    annotationProcessor "com.google.dagger:dagger-compiler:2.10"
+//    compileOnly "javax.annotation:jsr250-api:1.0"
+//    implementation "javax.inject:javax.inject:1"
+
+    // Add mockito to your project
+    testImplementation 'org.mockito:mockito-core:2.22.0'
 }
